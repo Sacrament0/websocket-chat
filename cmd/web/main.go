@@ -7,15 +7,15 @@ import (
 )
 
 func main() {
-	// создаем маршрутизатор
+	// router creating
 	mux := routes()
 
-	//асинхронно раскидываем клиентам полученные сообщения
+	// listening to client messages
 	log.Println("starting channel listening")
 	go handlers.ListenToWsChannel()
 
 	log.Println("Starting web server on port 8080")
-	// запускаем tcp сервер с указанием маршрутизатора
+	// starting webserver
 	_ = http.ListenAndServe(":8080", mux)
 
 }
